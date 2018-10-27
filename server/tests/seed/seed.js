@@ -25,6 +25,14 @@ const users = [
     _id: userTwoId,
     email: 'johndoe@example.com',
     password: 'userTwoPass',
+    tokens: [
+      {
+        access: 'auth',
+        token: jwt
+          .sign({ _id: userTwoId, access: 'auth' }, 'abc123')
+          .toString(),
+      },
+    ],
   },
 ];
 
@@ -34,12 +42,14 @@ const todos = [
     text: 'First test todo',
     completed: false,
     completedAt: null,
+    _creator: userOneId,
   },
   {
     _id: new ObjectID(),
     text: 'Second test todo',
     completed: true,
     completedAt: 1540126891144,
+    _creator: userTwoId,
   },
 ];
 
